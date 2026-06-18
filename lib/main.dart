@@ -4,15 +4,18 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:printing/printing.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'services/pdf_service.dart';
 import 'services/supabase_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
+  await dotenv.load(fileName: ".env");
+
   await Supabase.initialize(
-    url: 'https://fwpnrrbzsfnyldtygqtb.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3cG5ycmJ6c2ZueWxkdHlncXRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3NzAyNzQsImV4cCI6MjA5NzM0NjI3NH0.DtHEqUlMZ9ql_TFFebEI5wvV7swtkL9BjdfxCLVyebk',
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
   runApp(const MandapAssociationApp());
