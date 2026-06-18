@@ -3,9 +3,18 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:printing/printing.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'services/pdf_service.dart';
+import 'services/supabase_service.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  await Supabase.initialize(
+    url: 'https://fwpnrrbzsfnyldtygqtb.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3cG5ycmJ6c2ZueWxkdHlncXRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3NzAyNzQsImV4cCI6MjA5NzM0NjI3NH0.DtHEqUlMZ9ql_TFFebEI5wvV7swtkL9BjdfxCLVyebk',
+  );
+
   runApp(const MandapAssociationApp());
 }
 
